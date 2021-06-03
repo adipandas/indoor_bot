@@ -15,4 +15,5 @@
     sudo apt-get install ros-${ROS_DISTRO}-cartographer-*
     sudo apt install ros-${ROS_DISTRO}-multirobot-map-merge 
     sudo apt install ros-${ROS_DISTRO}-explore-lite
+    sudo apt-get install ros-${ROS_DISTRO}-teleop-twist-keyboard
     ```
