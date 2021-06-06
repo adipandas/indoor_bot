@@ -6,9 +6,10 @@
 
 # indoor_bot
 
-``indoor_bot`` is simple differential drive robot for indoor environments simulated in ROS. Currently, it simulats LiDAR sensor, IMU and simple camera as gazebo plugins.
+``indoor_bot`` is simple differential drive robot for indoor environments simulated using GazeboSim and ROS. Currently, it simulates a 2D-LiDAR sensor, an IMU and a simple camera as gazebo plugins.
 
 This package includes some demos explaining use of this package for SLAM and Localization.
+
 
 # SLAM
 
