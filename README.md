@@ -104,7 +104,7 @@ To localize using the map generated from SLAM you can use the following command:
 
 # References
 
-1. ROS Navigation Stack: http://wiki.ros.org/navigation
-2. RRT exploration: http://wiki.ros.org/rrt_exploration
-3. Cartographer SLAM: https://google-cartographer-ros.readthedocs.io/
-4. teleop_twist_keyboard: http://wiki.ros.org/teleop_twist_keyboard
+1. ROS Navigation Stack: [link](http://wiki.ros.org/navigation)
+2. RRT exploration: [link](http://wiki.ros.org/rrt_exploration)
+3. Cartographer SLAM: [link](https://google-cartographer-ros.readthedocs.io/)
+4. teleop_twist_keyboard: [link](http://wiki.ros.org/teleop_twist_keyboard)
