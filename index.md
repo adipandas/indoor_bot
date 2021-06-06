@@ -1,37 +1,110 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/adipandas/indoor_bot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[GazeboSim]: media/indoor_bot_cartographer_slam_gazebo.gif "Sample of gazebo sim"
+[Rviz]: media/indoor_bot_cartographer_slam_rviz.gif "Sample of rviz"
+[GazeboSimLocalizationAMCL]: media/indoor_bot_localization_amcl_gazebo.gif "indoor_bot gazebosim localization using AMCL"
+[RVizLocalizationAMCL]: media/indoor_bot_localization_amcl_rviz.gif "indoor_bot rviz localization using AMCL"
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# indoor_bot
 
-### Markdown
+``indoor_bot`` is simple differential drive robot for indoor environments simulated in ROS. Currently, it simulats LiDAR sensor, IMU and simple camera as gazebo plugins.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+This package includes some demos explaining use of this package for SLAM and Localization.
 
-```markdown
-Syntax highlighted code block
+# SLAM
 
-# Header 1
-## Header 2
-### Header 3
+GazeboSim |  Cartographer-SLAM
+:-------------------------:|:-------------------------:
+![GazeboSim][GazeboSim]  |  ![RViz][Rviz]
 
-- Bulleted
-- List
+<br>
+<br>
+<br>
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+# Localization and Navigation
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Localization / Navigation |  Demo
+:-------------------------:|:-------------------------:
+ GazeboSim |  ![GazeboSimLocalizationAMCL][GazeboSimLocalizationAMCL]
+RViz |  ![RVizLocalizationAMCL][RVizLocalizationAMCL]
 
-### Jekyll Themes
+<br>
+<br>
+<br>
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/adipandas/indoor_bot/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# Installation
 
-### Support or Contact
+This package was developed for ROS-melodic. But should be compatible for other versions of ROS1.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+1. Install ROS: http://wiki.ros.org/ROS/Installation
+
+2. Install the packages by executing the following commands in your terminal:
+
+    ```
+    source /opt/ros/melodic/setup.bash
+
+    sudo apt-get install ros-${ROS_DISTRO}-gazebo-*
+    sudo apt-get install ros-${ROS_DISTRO}-navigation
+    sudo apt-get install ros-${ROS_DISTRO}-joint-state-*
+    sudo apt-get install ros-${ROS_DISTRO}-visualization-msgs
+    sudo apt-get install ros-${ROS_DISTRO}-cartographer-*
+    sudo apt install ros-${ROS_DISTRO}-multirobot-map-merge 
+    sudo apt install ros-${ROS_DISTRO}-explore-lite
+    sudo apt-get install ros-${ROS_DISTRO}-teleop-twist-keyboard
+    ```
+
+3. Clone this repo and build the package.
+    ```
+    source /opt/ros/melodic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws/src
+
+    git clone https://github.com/adipandas/indoor_bot.git
+    cd ~/catkin_ws
+    catkin_make
+    source devel/setup.bash
+    ```
+
+# How to use?
+
+### SLAM
+
+Launch SLAM and Map the environment.
+
+    ```
+    source /opt/ros/melodic/setup.bash
+    source ~/catkin_ws/devel/setup.bash
+
+    roslaunch indoor_bot cartographer_slam_teleop.launch
+    ```
+
+Once mapping is complete use map-server to save the map. In onother terminal execute the following to save your map:
+
+    ```
+    source /opt/ros/melodic/setup.bash
+    source ~/catkin_ws/devel/setup.bash
+
+    roscd indoor_bot
+    cd maps
+    rosrun map_server map_saver -f <robotworldname>
+    ```
+
+### Localization and Navigation
+
+To localize using the map generated from SLAM you can use the following command:
+
+    ```
+    source /opt/ros/melodic/setup.bash
+    source ~/catkin_ws/devel/setup.bash
+
+    roslaunch indoor_bot amcl_localization.launch map_file:=<filepath> world_file:=<gazebo file path>
+    ```
+
+
+# References
+
+1. ROS Navigation Stack: http://wiki.ros.org/navigation
+2. RRT exploration: http://wiki.ros.org/rrt_exploration
+3. Cartographer SLAM: https://google-cartographer-ros.readthedocs.io/
+4. teleop_twist_keyboard: http://wiki.ros.org/teleop_twist_keyboard
