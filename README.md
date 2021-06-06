@@ -6,6 +6,9 @@
 
 # indoor_bot
 
+``indoor_bot`` is simple differential drive robot for indoor environments simulated in ROS. Currently, it simulats LiDAR sensor, IMU and simple camera as gazebo plugins.
+
+This package includes some demos explaining use of this package for SLAM and Localization.
 
 # SLAM
 
@@ -56,7 +59,7 @@ This package was developed for ROS-melodic. But should be compatible for other v
     source /opt/ros/melodic/setup.bash
     mkdir -p ~/catkin_ws/src
     cd ~/catkin_ws/src
-    
+
     git clone https://github.com/adipandas/indoor_bot.git
     cd ~/catkin_ws
     catkin_make
