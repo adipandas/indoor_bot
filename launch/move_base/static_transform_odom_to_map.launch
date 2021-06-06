@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="odom_to_map_transformation" args="0 0 0 0 0 0 1 map odom 100" />
+</launch>

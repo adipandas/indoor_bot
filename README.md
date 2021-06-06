@@ -1,8 +1,20 @@
+
+[GazeboSim]: media/indoor_bot_gazebo.gif "Sample of gazebo sim"
+[Rviz]: media/indoor_bot_rviz.gif "Sample of rviz"
+
 # indoor_bot
+
+GazeboSim |  Cartographer-SLAM
+:-------------------------:|:-------------------------:
+![GazeboSim][]  |  ![RViz][Rviz]
+
 
 ### Installatin
 
+This package was developed for ROS-melodic. But should be compatible for other versions of ROS1.
+
 1. Install ROS: http://wiki.ros.org/ROS/Installation
+
 2. Install the packages by executing the following commands in your terminal:
 
     ```
@@ -17,3 +29,37 @@
     sudo apt install ros-${ROS_DISTRO}-explore-lite
     sudo apt-get install ros-${ROS_DISTRO}-teleop-twist-keyboard
     ```
+
+3. Clone this repo and build the package.
+    ```
+    source /opt/ros/melodic/setup.bash
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws/src
+    git clone https://github.com/adipandas/indoor_bot.git
+    cd ~/catkin_ws
+    catkin_make
+    source devel/setup.bash
+    ```
+
+### Launch
+
+Launch SLAM and Map the environment.
+
+    ```
+    roslaunch indoor_bot cartographer_slam_teleop.launch
+    ```
+
+Once, mapping is complete use map-server to save the map. In onother terminal execute the following to save your map:
+
+    ```
+    roscd indoor_bot
+    cd maps
+    rosrun map_server map_saver -f <robotworldname>
+    ```
+
+## References
+
+1. ROS Navigation Stack: http://wiki.ros.org/navigation
+2. RRT exploration: http://wiki.ros.org/rrt_exploration
+3. Cartographer SLAM: https://google-cartographer-ros.readthedocs.io/
+4. teleop_twist_keyboard: http://wiki.ros.org/teleop_twist_keyboard

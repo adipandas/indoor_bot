@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- World File -->
+  <arg name="world_file" default="$(find indoor_bot)/worlds/big_apartment.world"/>
+
+  <!-- Launch Gazebo World -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="paused" value="false"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="true" />
+    <arg name="headless" value="false"/>
+  </include>
+
+</launch>

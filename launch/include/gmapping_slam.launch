@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- reference - http://wiki.ros.org/gmapping -->
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"  output="screen" respawn="false" respawn_delay="0">
+        <remap from="scan" to="/scan" />
+        <param name="base_frame" value="robot_footprint" />
+    </node>
+
+</launch>

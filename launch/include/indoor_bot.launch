@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="x" />
+  <arg name="y" />
+  <arg name="z" />
+  <arg name="roll" />
+  <arg name="pitch" />
+  <arg name="yaw" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+  </node>
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find indoor_bot)/models/urdf/indoor_bot.xacro'"/>
+
+  <node pkg="gazebo_ros" name="urdf_spawner" type="spawn_model" respawn="false" output="screen" 
+        args="-urdf -param robot_description -model indoor_bot 
+              -x $(arg x) -y $(arg y) -z $(arg z)
+              -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
+</launch>
