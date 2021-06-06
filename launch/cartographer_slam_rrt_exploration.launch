@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-
-    <arg name="dwa_planner" default="true" />
     <arg name="world_file" default="$(find indoor_bot)/worlds/simple_world.world"/>
     <arg name="configuration_basename" default="indoor_bot_lidar_slam_2d_gazebo.lua"/>
     <arg name="remap_map_topic" default="false" />
@@ -38,17 +36,8 @@
 
 
     <!-- MOVE Base Node - DWAPlannerROS -->
-    <group if="$(arg dwa_planner)">
-        <include file="$(find indoor_bot)/launch/move_base/localplanner_DWAPlannerROS.launch"/>
-    </group>
-
-
-    <!-- MOVE Base Node - TrajectoryPlannerROS -->
-    <group unless="$(arg dwa_planner)">
-        <include file="$(find indoor_bot)/launch/move_base/localplanner_TrajectoryPlannerROS.launch"/>
-    </group>
-
-
+    <include file="$(find indoor_bot)/launch/move_base/localplanner_DWAPlannerROS.launch"/>
+    
     <!-- Autonomous exploration: RRT Exploration -->
     <include file="$(find indoor_bot)/launch/exploration/rrt_exploration.launch">
         <arg name="robot_frame" value="robot_footprint"/>

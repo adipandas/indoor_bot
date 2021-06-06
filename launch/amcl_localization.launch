@@ -1,0 +1,42 @@
+<launch>
+    <arg name="map_file" default="$(find indoor_bot)/maps/big_apartment.yaml"/>
+    <arg name="world_file" default="$(find indoor_bot)/worlds/big_apartment.world"/>
+    <arg name="initial_pose_x" default="0."/>
+    <arg name="initial_pose_y" default="0."/>
+
+
+    <!-- Launch WORLD -->
+    <include file="$(find indoor_bot)/launch/include/world.launch">
+        <arg name="world_file" value="$(arg world_file)"/>
+    </include>
+
+    <!-- Launch ROBOT -->
+    <include file="$(find indoor_bot)/launch/include/indoor_bot.launch">
+        <arg name="x" value="$(arg initial_pose_x)"/>
+        <arg name="y" value="$(arg initial_pose_y)"/>
+        <arg name="z" value="0"/>
+        <arg name="roll" value="0"/>
+        <arg name="pitch" value="0"/>
+        <arg name="yaw" value="0.0"/>
+    </include>
+
+    <!-- MAP Server -->
+    <include file="$(find indoor_bot)/launch/include/map_server.launch">
+        <arg name="map_file" value="$(arg map_file)"/>
+    </include>
+
+
+    <!-- AMCL Node -->
+    <include file="$(find indoor_bot)/launch/include/amcl.launch">
+        <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+        <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+    </include>
+  
+    <include file="$(find indoor_bot)/launch/move_base/localplanner_DWAPlannerROS.launch"/>
+
+    <!-- RVIZ -->
+    <include file="$(find indoor_bot)/launch/include/rviz.launch">
+        <arg name="rviz_config" value="$(find indoor_bot)/rviz/indoor_bot.rviz"/>
+    </include>
+  
+</launch>

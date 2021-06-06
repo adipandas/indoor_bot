@@ -2,7 +2,7 @@
 <launch>
 
     <arg name="dwa_planner" default="true"/>
-    <arg name="world_file" default="$(find indoor_bot)/worlds/simple_world.world"/>
+    <arg name="world_file" default="$(find indoor_bot)/worlds/big_apartment.world"/>
     <arg name="configuration_basename" default="indoor_bot_lidar_slam_2d_gazebo.lua"/>
 
     <!-- Launch WORLD -->

@@ -1,14 +1,32 @@
 
-[GazeboSim]: media/indoor_bot_gazebo.gif "Sample of gazebo sim"
-[Rviz]: media/indoor_bot_rviz.gif "Sample of rviz"
+[GazeboSim]: media/indoor_bot_cartographer_slam_gazebo.gif "Sample of gazebo sim"
+[Rviz]: media/indoor_bot_cartographer_slam_rviz.gif "Sample of rviz"
 
-# indoor_bot
+[GazeboSimLocalizationAMCL]: media/indoor_bot_localization_amcl_gazebo.gif "indoor_bot gazebosim localization using AMCL"
+[RVizLocalizationAMCL]: media/indoor_bot_localization_amcl_rviz.gif "indoor_bot rviz localization using AMCL"
+
+# indoor_bot SLAM
 
 GazeboSim |  Cartographer-SLAM
 :-------------------------:|:-------------------------:
-![GazeboSim][]  |  ![RViz][Rviz]
+![GazeboSim][GazeboSim]  |  ![RViz][Rviz]
+
+<br>
+<br>
+<br>
 
 
+
+# indoor_bot Localization and Navigation
+
+Localization / Navigation |  Demo
+:-------------------------:|:-------------------------:
+ GazeboSim |  ![GazeboSimLocalizationAMCL][GazeboSimLocalizationAMCL]
+RViz |  ![RVizLocalizationAMCL][RVizLocalizationAMCL]
+
+<br>
+<br>
+<br>
 ### Installatin
 
 This package was developed for ROS-melodic. But should be compatible for other versions of ROS1.

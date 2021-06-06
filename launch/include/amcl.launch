@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="initial_pose_x" default="0."/>
+    <arg name="initial_pose_y" default="0."/>
+    
+
+    <!-- AMCL Node -->
+    <node name="amcl" pkg="amcl" type="amcl" output="screen">
+        <remap from="scan" to="/scan"/>
+        <param name="odom_model_type" value="diff-corrected"/>
+        <param name="odom_alpha1" value="0.1"/>
+        <param name="odom_alpha2" value="0.1"/>
+        
+        <param name="base_frame_id" value="robot_footprint"/>
+        <param name="global_frame_id" value="map"/>
+        
+        <param name="initial_pose_x" value="$(arg initial_pose_x)"/>  
+        <param name="initial_pose_y" value="$(arg initial_pose_y)"/>
+        
+        <param name="min_particles" value="3000"/>
+        <param name="max_particles" value="8000"/>
+        <param name="update_min_d" value="0.1"/>
+        <param name="update_min_a" value="0.1"/>
+        
+        <param name="laser_z_hit" value="0.0.9"/>
+        <param name="laser_z_short" value="0.05"/>
+        <param name="laser_z_max" value="0.05"/>
+        <param name="laser_z_rand" value="0.5"/>
+        <param name="laser_sigma_hit" value="0.1"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_model_type" value="likelihood_field"/>
+    </node>
+
+</launch>

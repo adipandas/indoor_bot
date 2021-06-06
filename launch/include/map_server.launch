@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- MAP Server -->
+  <arg name="map_file" default="$(find indoor_bot)/maps/big_apartment.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+</launch>
