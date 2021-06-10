@@ -6,10 +6,10 @@
     <arg name="map_topic" default="/map"/>
     <arg name="global_frame" default="map"/>
 
-    <arg name="info_radius" default="1.0"/>
+    <arg name="info_radius" default="3.0"/>
     
-    <arg name="eta" value="0.05"/>
-    <arg name="Geta" value="1.0"/>
+    <arg name="eta" value="1.0"/>
+    <arg name="Geta" value="5.0"/>
     <param name="namespace_init_count" value="1"/>
 
     <node pkg="indoor_bot" type="global_rrt_detector" name="global_detector" output="screen">

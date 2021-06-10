@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="world_file" default="$(find indoor_bot)/worlds/simple_world.world"/>
+    <arg name="world_file" default="$(find indoor_bot)/worlds/big_apartment.world"/>
     <arg name="configuration_basename" default="indoor_bot_lidar_slam_2d_gazebo.lua"/>
     <arg name="remap_map_topic" default="false" />
     <arg name="remap_map_topic_name" default="/cmap" />
 
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.0"/>
+    <arg name="roll" default="0.0"/>
+    <arg name="pitch" default="0.0"/>
+    <arg name="yaw" default="0.0"/>
 
     <!-- Launch WORLD -->
     <include file="$(find indoor_bot)/launch/include/world.launch">
@@ -13,15 +19,13 @@
 
     <!-- Launch ROBOT -->
     <include file="$(find indoor_bot)/launch/include/indoor_bot.launch">
-        <arg name="x" value="5.0"/>
-        <arg name="y" value="0"/>
-        <arg name="z" value="0"/>
-        <arg name="roll" value="0"/>
-        <arg name="pitch" value="0"/>
-        <arg name="yaw" value="3.12"/>
+        <arg name="x" value="$(arg x)"/>
+        <arg name="y" value="$(arg y)"/>
+        <arg name="z" value="$(arg z)"/>
+        <arg name="roll" value="$(arg roll)"/>
+        <arg name="pitch" value="$(arg pitch)"/>
+        <arg name="yaw" value="$(arg yaw)"/>
     </include>
-
-
 
     <!-- Launch SLAM -->
     <include file="$(find indoor_bot)/launch/include/cartographer_slam.launch">
