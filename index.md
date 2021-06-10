@@ -3,6 +3,8 @@
 [Rviz]: media/indoor_bot_cartographer_slam_rviz.gif "Sample of rviz"
 [GazeboSimLocalizationAMCL]: media/indoor_bot_localization_amcl_gazebo.gif "indoor_bot gazebosim localization using AMCL"
 [RVizLocalizationAMCL]: media/indoor_bot_localization_amcl_rviz.gif "indoor_bot rviz localization using AMCL"
+[GazeboSimAutoSLAM]: media/auto_slam_gazebo.gif "indoor_bot gazebosim localization using AMCL"
+[RVizAutoSLAM]: media/auto_slam_rviz.gif "indoor_bot rviz localization using AMCL"
 
 # indoor_bot
 
@@ -10,6 +12,8 @@
 
 This package includes some demos explaining use of this package for SLAM and Localization.
 
+<br>
+<br>
 
 # SLAM
 
@@ -19,20 +23,25 @@ GazeboSim |  Cartographer-SLAM
 
 <br>
 <br>
+
+# Autonomous exploration for SLAM
+
+GazeboSim |  Autonomous-SLAM 
+:-------------------------:|:-------------------------:
+![GazeboSim][GazeboSimAutoSLAM]  |  ![RViz][RVizAutoSLAM]
+
 <br>
-
-
+<br>
 
 # Localization and Navigation
 
-Localization / Navigation |  Demo
+Gazebo |  Rviz
 :-------------------------:|:-------------------------:
- GazeboSim |  ![GazeboSimLocalizationAMCL][GazeboSimLocalizationAMCL]
-RViz |  ![RVizLocalizationAMCL][RVizLocalizationAMCL]
+ ![GazeboSimLocalizationAMCL][GazeboSimLocalizationAMCL]   |  ![RVizLocalizationAMCL][RVizLocalizationAMCL]
 
 <br>
 <br>
-<br>
+
 
 # Installation
 
@@ -42,7 +51,7 @@ This package was developed for ROS-melodic. But should be compatible for other v
 
 2. Install the packages by executing the following commands in your terminal:
 
-    ```
+    ```bash
     source /opt/ros/melodic/setup.bash
 
     sudo apt-get install ros-${ROS_DISTRO}-gazebo-*
@@ -56,7 +65,7 @@ This package was developed for ROS-melodic. But should be compatible for other v
     ```
 
 3. Clone this repo and build the package.
-    ```
+    ```bash
     source /opt/ros/melodic/setup.bash
     mkdir -p ~/catkin_ws/src
     cd ~/catkin_ws/src
@@ -71,36 +80,45 @@ This package was developed for ROS-melodic. But should be compatible for other v
 
 ### SLAM
 
-Launch SLAM and Map the environment.
+Launch SLAM and Map the environment using teleoperation.
 
-    ```
-    source /opt/ros/melodic/setup.bash
-    source ~/catkin_ws/devel/setup.bash
+```bash
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
 
-    roslaunch indoor_bot cartographer_slam_teleop.launch
-    ```
+roslaunch indoor_bot cartographer_slam_teleop.launch
+```
+
+Instead of manually building the map, you may prefer also try to use RRT-exploration to autonomously map the robot frontier. For more documentation, please refer **[this page](http://wiki.ros.org/rrt_exploration)**.
+
+```bash
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+roslaunch indoor_bot cartographer_slam_rrt_exploration.launch
+```
 
 Once mapping is complete use map-server to save the map. In onother terminal execute the following to save your map:
 
-    ```
-    source /opt/ros/melodic/setup.bash
-    source ~/catkin_ws/devel/setup.bash
+```bash
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
 
-    roscd indoor_bot
-    cd maps
-    rosrun map_server map_saver -f <robotworldname>
-    ```
+roscd indoor_bot
+cd maps
+rosrun map_server map_saver -f <robotworldname>
+```
 
 ### Localization and Navigation
 
 To localize using the map generated from SLAM you can use the following command:
 
-    ```
-    source /opt/ros/melodic/setup.bash
-    source ~/catkin_ws/devel/setup.bash
+```bash
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
 
-    roslaunch indoor_bot amcl_localization.launch map_file:=<filepath> world_file:=<gazebo file path>
-    ```
+roslaunch indoor_bot amcl_localization.launch map_file:=<filepath> world_file:=<gazebo file path>
+```
 
 
 # References
