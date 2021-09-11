@@ -37,8 +37,6 @@
 
     <!-- Teleoperation node -->
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen"/>
-
-    <include file="$(find indoor_bot)/launch/robot_pose_ekf.launch"/>
     
     <!-- RVIZ -->
     <include file="$(find indoor_bot)/launch/include/rviz.launch">
