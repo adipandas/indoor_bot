@@ -117,7 +117,7 @@ To localize using the map generated from SLAM you can use the following command:
 source /opt/ros/melodic/setup.bash
 source ~/catkin_ws/devel/setup.bash
 
-roslaunch indoor_bot amcl_localization.launch map_file:=<filepath> world_file:=<gazebo file path>
+roslaunch indoor_bot amcl_localization.launch map_file:=/path/to/map.yaml> world_file:=/path/to/your_gazebo.world>
 ```
 
 
